@@ -12,15 +12,16 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan vogsphere.42paris.fr >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
+          git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
 
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           submodules: recursive
           fetch-depth: 0
-          ssh-key: true
+          ssh-key: false  # Désactiver SSH pour GitHub
 
-      - name: Force Git to use SSH key
+      - name: Force Git to use SSH for Vogsphere
         run: |
           git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no"
 
