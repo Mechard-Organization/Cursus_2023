@@ -27,11 +27,6 @@ jobs:
           echo "  IdentityFile ~/.ssh/github_action_key" >> ~/.ssh/config
           echo "  StrictHostKeyChecking accept-new" >> ~/.ssh/config
 
-      - name: Debug SSH Connection
-        run: |
-          ssh -T git@vogsphere.42paris.fr || echo "SSH connection to Vogsphere failed"
-          ssh -T git@github.com || echo "SSH connection to GitHub failed"
-
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
