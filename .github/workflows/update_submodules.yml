@@ -10,36 +10,32 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Force execution even if one step fails
-        run: |
-          set -e  # Stop script if any command fails
-          echo "Forcing execution of all commands"
-
       - name: Setup SSH key for Vogsphere
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H vogsphere.42paris.fr >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
 
-      - name: Force Git to use the correct SSH key
+      - name: Configure SSH for Vogsphere
         run: |
           echo "Host vogsphere.42paris.fr" >> ~/.ssh/config
+          echo "  HostName vogsphere.42paris.fr" >> ~/.ssh/config
+          echo "  User git" >> ~/.ssh/config
           echo "  IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
-          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking accept-new" >> ~/.ssh/config
+          chmod 600 ~/.ssh/config
 
       - name: Debug SSH Connection
         run: |
-          ssh-keyscan -H vogsphere.42paris.fr > ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-          cat ~/.ssh/known_hosts
-          ssh -T git@vogsphere.42paris.fr || echo "SSH connection failed"
+          ssh -vT git@vogsphere.42paris.fr || echo "SSH connection failed"
 
-      - name: Check SSH Key Fingerprint
-        run: ssh-keygen -lf ~/.ssh/id_rsa
+      - name: Ensure Git uses SSH
+        run: git config --global url."git@vogsphere.42paris.fr:".insteadOf "https://vogsphere.42paris.fr/"
 
       - name: Initialize and update submodules
-        run: |
-          git submodule update --init --recursive
+        run: git submodule update --init --recursive --force
 
       - name: Copy submodule files to main repo
         run: |
