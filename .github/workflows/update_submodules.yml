@@ -15,9 +15,22 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H vogsphere.42paris.fr >> ~/.ssh/known_hosts
+
+      - name: Force Git to use the correct SSH key
+        run: |
+          echo "Host vogsphere.42paris.fr" >> ~/.ssh/config
+          echo "  IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+
+      - name: Debug SSH Connection
+        run: |
+          ssh-keyscan -H vogsphere.42paris.fr > ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
-          cat ~/.ssh/known_hosts  # Vérification
+          cat ~/.ssh/known_hosts
+          ssh -T git@vogsphere.42paris.fr || echo "SSH connection failed"
+
+      - name: Check SSH Key Fingerprint
+        run: ssh-keygen -lf ~/.ssh/id_rsa
 
       - name: Initialize and update submodules
         run: |
