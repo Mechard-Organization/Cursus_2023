@@ -5,13 +5,8 @@ jobs:
   update-submodules:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup SSH key for Vogsphere
+      - name: Force Git to use HTTPS for GitHub
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan vogsphere.42paris.fr >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
           git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
 
       - name: Checkout repository
@@ -19,7 +14,15 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-          ssh-key: false  # Désactiver SSH pour GitHub
+          ssh-key: false  # Désactiver SSH pour GitHub et forcer HTTPS
+
+      - name: Setup SSH key for Vogsphere
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan vogsphere.42paris.fr >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
 
       - name: Force Git to use SSH for Vogsphere
         run: |
