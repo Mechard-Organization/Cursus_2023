@@ -28,9 +28,6 @@ jobs:
           chmod 644 ~/.ssh/known_hosts
           cat ~/.ssh/known_hosts
 
-      - name: Debug known_hosts
-        run: cat ~/.ssh/known_hosts || echo "known_hosts is empty"
-
       - name: Disable strict host key checking
         run: |
           echo "Host vogsphere.42paris.fr" >> ~/.ssh/config
@@ -38,12 +35,12 @@ jobs:
           echo "  UserKnownHostsFile=/dev/null" >> ~/.ssh/config
           chmod 600 ~/.ssh/config
 
+      - name: Test SSH Connection to Vogsphere
+        run: ssh -v -i ~/.ssh/id_rsa -T git@vogsphere.42paris.fr || true
+
       - name: Force Git to use SSH for Vogsphere
         run: |
           git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no"
-
-      - name: Test SSH Connection
-        run: ssh -v -i ~/.ssh/id_rsa -T git@vogsphere.42paris.fr || true
 
       - name: Initialize and update submodules
         run: |
