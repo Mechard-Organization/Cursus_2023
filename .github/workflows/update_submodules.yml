@@ -5,6 +5,12 @@ jobs:
   update-submodules:
     runs-on: ubuntu-latest
     steps:
+      - name: Add Vogsphere to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan vogsphere.42paris.fr >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
@@ -16,7 +22,6 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan vogsphere.42paris.fr >> ~/.ssh/known_hosts
 
       - name: Set SSH key environment variable
         run: |
