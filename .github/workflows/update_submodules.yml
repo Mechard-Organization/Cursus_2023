@@ -16,6 +16,7 @@ jobs:
           echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan vogsphere.42paris.fr >> ~/.ssh/known_hosts
+          git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa"
 
       - name: Initialize and update submodules
         run: |
