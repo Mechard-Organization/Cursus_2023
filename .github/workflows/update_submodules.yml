@@ -1,52 +1,67 @@
-name: Update Submodules
-
-on:
-  push:
-    branches:
-      - main_cursus_2023
-  workflow_dispatch:
+name: Checkout and display submodules
+on: [push, pull_request]
 
 jobs:
   update-submodules:
     runs-on: ubuntu-latest
-
     steps:
+      - name: Setup SSH keys
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa_vogsphere
+          echo "${{ secrets.MY_GITHUB_SSH_KEY }}" > ~/.ssh/github_action_key
+          chmod 600 ~/.ssh/id_rsa_*
+
+      - name: Set correct permissions for GitHub SSH key
+        run: chmod 600 ~/.ssh/github_action_key
+
+      - name: Use GitHub SSH key
+        run: |
+          ssh-agent bash -c 'ssh-add ~/.ssh/github_action_key && git config --global core.sshCommand "ssh -i ~/.ssh/github_action_key -o IdentitiesOnly=yes"'
+
+      - name: Configure SSH for Vogsphere
+        run: |
+          echo "Host vogsphere.42paris.fr" >> ~/.ssh/config
+          echo "  HostName vogsphere.42paris.fr" >> ~/.ssh/config
+          echo "  User git" >> ~/.ssh/config
+          echo "  IdentityFile ~/.ssh/id_rsa_vogsphere" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+
+      - name: Configure SSH for GitHub
+        run: |
+          echo "Host github.com" >> ~/.ssh/config
+          echo "  User git" >> ~/.ssh/config
+          echo "  IdentityFile ~/.ssh/github_action_key" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking accept-new" >> ~/.ssh/config
+
+      - name: Debug SSH Connection
+        run: |
+          ssh -T git@vogsphere.42paris.fr || echo "SSH connection to Vogsphere failed"
+          ssh -T git@github.com || echo "SSH connection to GitHub failed"
+
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          submodules: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: recursive
+          ssh-key: ${{ secrets.GITHUB_SSH_KEY }}
 
-      - name: Set up SSH
+      - name: Ensure GitHub SSH key is used
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/github_action_key
-          chmod 600 ~/.ssh/github_action_key
-          echo "Host github.com" >> ~/.ssh/config
-          echo "    IdentityFile ~/.ssh/github_action_key" >> ~/.ssh/config
-          echo "    IdentitiesOnly yes" >> ~/.ssh/config
+          ssh-agent bash -c 'ssh-add ~/.ssh/github_action_key && git config --global core.sshCommand "ssh -i ~/.ssh/github_action_key -o IdentitiesOnly=yes"'
 
-      - name: Test SSH connection to GitHub
-        run: ssh -T git@github.com || echo "SSH connection to GitHub failed"
+      - name: Initialize and update submodules
+        run: git submodule update --init --recursive --force
 
-      - name: Test SSH connection to Vogsphere
-        run: ssh -T git@vogsphere.42paris.fr || echo "SSH connection to Vogsphere failed"
-
-      - name: Update submodules
+      - name: Copy submodule files to main repo
         run: |
-          git submodule sync --recursive
-          git submodule update --init --force --depth=1 --recursive
+          mkdir -p Projects/libft_125_mirror
+          rsync -av --progress Projects/libft_125/ Projects/libft_125_mirror/
 
-      - name: Persist credentials for submodules
-        run: |
-          git config --global url."git@vogsphere.42paris.fr:".insteadOf "https://vogsphere.42paris.fr/"
 
-      - name: Commit and push submodules updates
+      - name: Commit and push updated submodule content
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add .
-          git commit -m "Update submodules" || echo "No changes to commit"
-          git push origin main_cursus_2023
-        env:
-          GIT_SSH_COMMAND: "ssh -i ~/.ssh/github_action_key -o IdentitiesOnly=yes"
+          git add Projects/libft_125_mirror/
+          git commit -m "Sync submodule content for visibility on GitHub" || echo "No changes to commit"
+          git push origin HEAD:main
