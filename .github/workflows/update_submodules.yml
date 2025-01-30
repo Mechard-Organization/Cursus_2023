@@ -45,12 +45,12 @@ jobs:
           submodules: recursive
           ssh-key: ${{ secrets.GITHUB_SSH_KEY }}
 
-            - name: Ensure GitHub SSH key is used
-              run: |
-                eval "$(ssh-agent -s)"
-                ssh-add ~/.ssh/github_action_key || sleep 5 && ssh-add ~/.ssh/github_action_key
-                ssh -T git@github.com || echo "SSH connection to GitHub failed"
-                git config --global core.sshCommand "ssh -i ~/.ssh/github_action_key -o IdentitiesOnly=yes"
+      - name: Ensure GitHub SSH key is used
+        run: |
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/github_action_key || sleep 5 && ssh-add ~/.ssh/github_action_key
+          ssh -T git@github.com || echo "SSH connection to GitHub failed"
+          git config --global core.sshCommand "ssh -i ~/.ssh/github_action_key -o IdentitiesOnly=yes"
 
 
       - name: Initialize and update submodules
