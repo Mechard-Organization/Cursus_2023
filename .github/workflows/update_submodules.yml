@@ -38,10 +38,9 @@ jobs:
           submodules: recursive
           ssh-key: ${{ secrets.GITHUB_SSH_KEY }}
 
-      - name: Ensure Git uses SSH
+      - name: Ensure GitHub SSH key is used
         run: |
-          git config --global url."git@vogsphere.42paris.fr:".insteadOf "https://vogsphere.42paris.fr/"
-          git config --global url."git@github.com:".insteadOf "https://github.com/"
+          ssh-agent bash -c 'ssh-add ~/.ssh/id_rsa_github && git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa_github -o IdentitiesOnly=yes"'
 
       - name: Initialize and update submodules
         run: git submodule update --init --recursive --force
@@ -50,6 +49,7 @@ jobs:
         run: |
           mkdir -p Projects/libft_125_mirror
           rsync -av --progress Projects/libft_125/ Projects/libft_125_mirror/
+
 
       - name: Commit and push updated submodule content
         run: |
