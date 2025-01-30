@@ -8,7 +8,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          submodules: recursive
+          submodules: true
+          fetch-depth: 0
 
       - name: Setup SSH key for Vogsphere
         run: |
@@ -16,7 +17,10 @@ jobs:
           echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan vogsphere.42paris.fr >> ~/.ssh/known_hosts
-          git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa"
+
+      - name: Set SSH key environment variable
+        run: |
+          echo "GIT_SSH_COMMAND=ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" >> $GITHUB_ENV
 
       - name: Debug SSH Key
         run: |
@@ -25,12 +29,11 @@ jobs:
       
       - name: Test SSH Connection
         run: |
-          ssh -i ~/.ssh/id_rsa -T git@vogsphere.42paris.fr || true
-      
-      - name: Force Git to use SSH key
+          ssh -v -i ~/.ssh/id_rsa -T git@vogsphere.42paris.fr || true
+
+      - name: Test Manual Clone
         run: |
-          git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa"
-        
+          git clone git@vogsphere.42paris.fr:vogsphere/intra-uuid-d6358c9a-5f9c-427d-90e6-c097fef3c0cb-5288950-mechard test_libft || true
 
       - name: Initialize and update submodules
         run: |
