@@ -10,7 +10,7 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa_vogsphere
           echo "${{ secrets.MY_GITHUB_SSH_KEY }}" > ~/.ssh/github_action_key
-          chmod 600 ~/.ssh/id_rsa_*
+          chmod 600 ~/.ssh/id_rsa_vogsphere ~/.ssh/github_action_key
 
       - name: Configure SSH for Vogsphere
         run: |
@@ -26,6 +26,9 @@ jobs:
           echo "  User git" >> ~/.ssh/config
           echo "  IdentityFile ~/.ssh/github_action_key" >> ~/.ssh/config
           echo "  StrictHostKeyChecking accept-new" >> ~/.ssh/config
+
+      - name: Fix SSH Key Permissions 🔧
+        run: chmod 400 ~/.ssh/github_action_key
 
       - name: Checkout repository
         uses: actions/checkout@v3
