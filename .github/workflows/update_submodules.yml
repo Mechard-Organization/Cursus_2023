@@ -18,6 +18,20 @@ jobs:
           ssh-keyscan vogsphere.42paris.fr >> ~/.ssh/known_hosts
           git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa"
 
+      - name: Debug SSH Key
+        run: |
+          ls -la ~/.ssh/
+          cat ~/.ssh/id_rsa | head -n 5
+      
+      - name: Test SSH Connection
+        run: |
+          ssh -i ~/.ssh/id_rsa -T git@vogsphere.42paris.fr || true
+      
+      - name: Force Git to use SSH key
+        run: |
+          git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa"
+        
+
       - name: Initialize and update submodules
         run: |
           git submodule update --init --recursive
