@@ -5,35 +5,43 @@ jobs:
   update-submodules:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup SSH key for Vogsphere
+      - name: Setup SSH keys
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H vogsphere.42paris.fr >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
+          echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa_vogsphere
+          echo "${{ secrets.MY_GITHUB_SSH_KEY }}" > ~/.ssh/id_rsa_github
+          chmod 600 ~/.ssh/id_rsa_*
 
       - name: Configure SSH for Vogsphere
         run: |
           echo "Host vogsphere.42paris.fr" >> ~/.ssh/config
           echo "  HostName vogsphere.42paris.fr" >> ~/.ssh/config
           echo "  User git" >> ~/.ssh/config
-          echo "  IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
+          echo "  IdentityFile ~/.ssh/id_rsa_vogsphere" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+
+      - name: Configure SSH for GitHub
+        run: |
+          echo "Host github.com" >> ~/.ssh/config
+          echo "  User git" >> ~/.ssh/config
+          echo "  IdentityFile ~/.ssh/id_rsa_github" >> ~/.ssh/config
           echo "  StrictHostKeyChecking accept-new" >> ~/.ssh/config
-          chmod 600 ~/.ssh/config
 
       - name: Debug SSH Connection
         run: |
-          ssh -vT git@vogsphere.42paris.fr || echo "SSH connection failed"
+          ssh -T git@vogsphere.42paris.fr || echo "SSH connection to Vogsphere failed"
+          ssh -T git@github.com || echo "SSH connection to GitHub failed"
 
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           submodules: recursive
-          ssh-key: ${{ secrets.VOGSPHERE_SSH_KEY }}
+          ssh-key: ${{ secrets.GITHUB_SSH_KEY }}
 
       - name: Ensure Git uses SSH
-        run: git config --global url."git@vogsphere.42paris.fr:".insteadOf "https://vogsphere.42paris.fr/"
+        run: |
+          git config --global url."git@vogsphere.42paris.fr:".insteadOf "https://vogsphere.42paris.fr/"
+          git config --global url."git@github.com:".insteadOf "https://github.com/"
 
       - name: Initialize and update submodules
         run: git submodule update --init --recursive --force
