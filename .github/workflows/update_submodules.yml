@@ -9,7 +9,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa_vogsphere
-          echo "${{ secrets.MY_GITHUB_SSH_KEY }}" > ~/.ssh/id_rsa_github
+          echo "${{ secrets.MY_GITHUB_SSH_KEY }}" > ~/.ssh/github_action_key
           chmod 600 ~/.ssh/id_rsa_*
 
       - name: Configure SSH for Vogsphere
@@ -24,7 +24,7 @@ jobs:
         run: |
           echo "Host github.com" >> ~/.ssh/config
           echo "  User git" >> ~/.ssh/config
-          echo "  IdentityFile ~/.ssh/id_rsa_github" >> ~/.ssh/config
+          echo "  IdentityFile ~/.ssh/github_action_key" >> ~/.ssh/config
           echo "  StrictHostKeyChecking accept-new" >> ~/.ssh/config
 
       - name: Debug SSH Connection
@@ -40,7 +40,7 @@ jobs:
 
       - name: Ensure GitHub SSH key is used
         run: |
-          ssh-agent bash -c 'ssh-add ~/.ssh/id_rsa_github && git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa_github -o IdentitiesOnly=yes"'
+          ssh-agent bash -c 'ssh-add ~/.ssh/github_action_key && git config --global core.sshCommand "ssh -i ~/.ssh/github_action_key -o IdentitiesOnly=yes"'
 
       - name: Initialize and update submodules
         run: git submodule update --init --recursive --force
