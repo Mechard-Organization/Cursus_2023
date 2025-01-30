@@ -38,14 +38,6 @@ jobs:
           submodules: recursive
           ssh-key: ${{ secrets.GITHUB_SSH_KEY }}
 
-      - name: Ensure GitHub SSH key is used
-        run: |
-          ssh-agent bash -c 'ssh-add ~/.ssh/github_action_key && git config --global core.sshCommand "ssh -i ~/.ssh/github_action_key -o IdentitiesOnly=yes"'
-          chmod 600 ~/.ssh/*
-
-      - name: Initialize and update submodules
-        run: git submodule update --init --recursive --force
-
       - name: Copy submodule files to main repo
         run: |
           mkdir -p Projects/libft_125_mirror
