@@ -5,52 +5,17 @@ jobs:
   update-submodules:
     runs-on: ubuntu-latest
     steps:
-      - name: Force Git to use HTTPS for GitHub
-        run: |
-          git config --global url."https://github.com/".insteadOf "git@github.com:"
-
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           submodules: recursive
-          fetch-depth: 0
-          ssh-key: false  # Désactive SSH pour GitHub et force HTTPS
 
       - name: Setup SSH key for Vogsphere
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-
-      - name: Add Vogsphere to known_hosts
-        run: |
-          ssh-keyscan -H -t rsa,dsa,ecdsa,ed25519 vogsphere.42paris.fr >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-          cat ~/.ssh/known_hosts
-
-      - name: Debug known_hosts
-        run: cat ~/.ssh/known_hosts || echo "known_hosts is empty"
-
-      - name: Disable strict host key checking
-        run: |
-          echo "Host vogsphere.42paris.fr" >> ~/.ssh/config
-          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
-          echo "  UserKnownHostsFile=/dev/null" >> ~/.ssh/config
-          chmod 600 ~/.ssh/config
-
-      - name: Force Git to use SSH for Vogsphere
-        run: |
-          git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no"
-
-      - name: Test SSH Connection
-        run: ssh -v -i ~/.ssh/id_rsa -T git@vogsphere.42paris.fr || true
-
-      - name: Add Vogsphere to known_hosts
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -H -t rsa,dsa,ecdsa,ed25519 vogsphere.42paris.fr >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-          cat ~/.ssh/known_hosts  # Pour afficher le contenu et vérifier que c'est bien ajouté
+          ssh-keyscan vogsphere.42paris.fr >> ~/.ssh/known_hosts
 
       - name: Initialize and update submodules
         run: |
