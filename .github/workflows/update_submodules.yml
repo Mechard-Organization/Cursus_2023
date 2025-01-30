@@ -40,8 +40,8 @@ jobs:
 
       - name: Ensure GitHub SSH key is used
         run: |
-          chmod 600 ~/.ssh/*
           ssh-agent bash -c 'ssh-add ~/.ssh/github_action_key && git config --global core.sshCommand "ssh -i ~/.ssh/github_action_key -o IdentitiesOnly=yes"'
+          chmod 600 ~/.ssh/*
 
       - name: Initialize and update submodules
         run: git submodule update --init --recursive --force
