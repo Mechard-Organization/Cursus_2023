@@ -21,8 +21,16 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan vogsphere.42paris.fr >> ~/.ssh/known_hosts
+
+      - name: Add Vogsphere to known_hosts
+        run: |
+          ssh-keyscan -t rsa,dsa,ecdsa,ed25519 vogsphere.42paris.fr >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
+
+      - name: Disable strict host key checking
+        run: |
+          echo "StrictHostKeyChecking no" >> ~/.ssh/config
+          echo "UserKnownHostsFile=/dev/null" >> ~/.ssh/config
 
       - name: Force Git to use SSH for Vogsphere
         run: |
