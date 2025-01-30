@@ -38,10 +38,14 @@ jobs:
           mkdir -p Projects/libft_125_mirror
           rsync -av --progress Projects/libft_125/ Projects/libft_125_mirror/
 
+      - name: Remove Git metadata from copied submodule
+        run: rm -rf Projects/libft_125_mirror/.git
+
       - name: Commit and push updated submodule content
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+          git remote set-url origin git@github.com:M1000-93/Cursus_2023.git
           git add Projects/libft_125_mirror/
           git commit -m "Sync submodule content for visibility on GitHub" || echo "No changes to commit"
           git push origin HEAD:main_cursus_2023
