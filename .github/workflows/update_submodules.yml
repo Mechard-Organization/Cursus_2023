@@ -45,6 +45,13 @@ jobs:
       - name: Test SSH Connection
         run: ssh -v -i ~/.ssh/id_rsa -T git@vogsphere.42paris.fr || true
 
+      - name: Add Vogsphere to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H -t rsa,dsa,ecdsa,ed25519 vogsphere.42paris.fr >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          cat ~/.ssh/known_hosts  # Pour afficher le contenu et vérifier que c'est bien ajouté
+
       - name: Initialize and update submodules
         run: |
           git submodule update --init --recursive
