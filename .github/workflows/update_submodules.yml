@@ -7,14 +7,14 @@ jobs:
     steps:
       - name: Force Git to use HTTPS for GitHub
         run: |
-          git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
 
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           submodules: recursive
           fetch-depth: 0
-          ssh-key: false  # Désactiver SSH pour GitHub et forcer HTTPS
+          ssh-key: false  # Désactive SSH pour GitHub et force HTTPS
 
       - name: Setup SSH key for Vogsphere
         run: |
