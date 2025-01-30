@@ -11,6 +11,11 @@ jobs:
           submodules: true
           fetch-depth: 0
 
+      - name: Force execution even if one step fails
+        run: |
+          set -e  # Stop script if any command fails
+          echo "Forcing execution of all commands"
+
       - name: Setup SSH key for Vogsphere
         run: |
           mkdir -p ~/.ssh
@@ -41,6 +46,7 @@ jobs:
 
       - name: Copy submodule files to main repo
         run: |
+          mkdir -p Projects/libft_125_mirror
           rsync -av --progress Projects/libft_125/ Projects/libft_125_mirror/
 
       - name: Commit and push updated submodule content
@@ -49,4 +55,4 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add Projects/libft_125_mirror/
           git commit -m "Sync submodule content for visibility on GitHub" || echo "No changes to commit"
-          git push
+          git push origin HEAD:main
