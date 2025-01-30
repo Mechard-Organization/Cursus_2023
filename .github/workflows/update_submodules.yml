@@ -29,8 +29,9 @@ jobs:
 
       - name: Disable strict host key checking
         run: |
-          echo "StrictHostKeyChecking no" >> ~/.ssh/config
-          echo "UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+          echo "Host vogsphere.42paris.fr" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+          echo "  UserKnownHostsFile=/dev/null" >> ~/.ssh/config
 
       - name: Force Git to use SSH for Vogsphere
         run: |
@@ -58,5 +59,5 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add Projects/libft_125_mirror/
-          git commit -m "Sync submodule content for visibility on GitHub" || echo "No changes to commit"
+          git commit -m "Sync submodule content for visibility on GitHub"
           git push
