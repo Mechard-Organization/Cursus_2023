@@ -26,9 +26,10 @@ jobs:
         run: |
           ssh-keyscan -H -t rsa,dsa,ecdsa,ed25519 vogsphere.42paris.fr >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
+          cat ~/.ssh/known_hosts
 
       - name: Debug known_hosts
-        run: cat ~/.ssh/known_hosts
+        run: cat ~/.ssh/known_hosts || echo "known_hosts is empty"
 
       - name: Disable strict host key checking
         run: |
@@ -59,4 +60,3 @@ jobs:
           git add Projects/libft_125_mirror/
           git commit -m "Sync submodule content for visibility on GitHub" || echo "No changes to commit"
           git push
-          
