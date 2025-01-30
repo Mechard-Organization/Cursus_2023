@@ -8,8 +8,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          submodules: true
-          fetch-depth: 0
+          submodules: recursive
 
       - name: Force execution even if one step fails
         run: |
@@ -21,24 +20,22 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.VOGSPHERE_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan vogsphere.42paris.fr >> ~/.ssh/known_hosts
 
-      - name: Set SSH key environment variable
+      - name: Force Git to use the correct SSH key
         run: |
-          echo "GIT_SSH_COMMAND=ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" >> $GITHUB_ENV
+          echo "Host vogsphere.42paris.fr" >> ~/.ssh/config
+          echo "  IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
 
-      - name: Debug SSH Key
+      - name: Debug SSH Connection
         run: |
-          ls -la ~/.ssh/
-          cat ~/.ssh/id_rsa | head -n 5
-      
-      - name: Test SSH Connection
-        run: |
-          ssh -v -i ~/.ssh/id_rsa -T git@vogsphere.42paris.fr || true
+          ssh-keyscan -H vogsphere.42paris.fr > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          cat ~/.ssh/known_hosts
+          ssh -T git@vogsphere.42paris.fr || echo "SSH connection failed"
 
-      - name: Test Manual Clone
-        run: |
-          git clone git@vogsphere.42paris.fr:vogsphere/intra-uuid-d6358c9a-5f9c-427d-90e6-c097fef3c0cb-5288950-mechard test_libft || true
+      - name: Check SSH Key Fingerprint
+        run: ssh-keygen -lf ~/.ssh/id_rsa
 
       - name: Initialize and update submodules
         run: |
