@@ -1,4 +1,5 @@
                                             
 ush" in the folder Cursus_2023 finished ! <<[0m
-mand "git push" in the folder Cursus_2023<< [0m
-[0;33mWed Jul  9 10:41:33 AM CEST 2025[0m by [0;33mmechard[0m 
+mand "git push" in the folder Cursus_2023 <<[0m
+[0;33mWed Jul  9 10:42:52 AM CEST 2025[0m by [0;33mmechard[0m 
+
