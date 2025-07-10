@@ -1,3 +1,4 @@
 [submodule "Projects/In_progress/IRC"]
 	path = Projects/In_progress/IRC
 	url = git@github.com:M2000-fr/IRC.git
+	branch = sub_main
