@@ -11,3 +11,6 @@
 [submodule "Projects/In_progress/new"]
 	path = Projects/In_progress/new
 	url = git@github.com:M2000-fr/IRC.git
+[submodule "Projects/IRC_125"]
+	path = Projects/IRC_125
+	url = git@vogsphere.42paris.fr:vogsphere/intra-uuid-cc77f2cb-aa33-4425-ae9d-b3d6dd662506-6738256-mechard
