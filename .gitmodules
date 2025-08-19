@@ -4,3 +4,6 @@
 [submodule "Projects/IRC_125/IRC_repo_github"]
 	path = Projects/IRC_125/IRC_repo_github
 	url = git@github.com:M2000-fr/IRC.git
+[submodule "Projects/IRC/ft_irc"]
+	path = Projects/IRC/ft_irc
+	url = https://github.com/EniumRaphael/ft_irc.git
