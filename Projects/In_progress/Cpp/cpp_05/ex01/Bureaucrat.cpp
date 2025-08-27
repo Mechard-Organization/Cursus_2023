@@ -74,19 +74,24 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat)
 {
-    out << BOLD << CYAN << UNDERLINE << CYAN << bureaucrat.getName() << RESET << ", bureaucrat grade " << BOLD << CYAN << UNDERLINE << CYAN << bureaucrat.getGrade() << RESET << ".";
+    out << BOLD CYAN UNDERLINE CYAN << bureaucrat.getName() << RESET << ", bureaucrat grade " << BOLD CYAN UNDERLINE CYAN << bureaucrat.getGrade() << RESET << ".";
     return out;
 }
 
 void Bureaucrat::signForm(Form &form) const
 {
-    try
-	{
-        form.beSigned(*this);
-        std::cout << name << BOLD << BLUE << " signed " << RESET << form.getName() << std::endl;
-    }
-    catch (std::exception &e)
-	{
-        std::cout << name << BOLD << MAGENTA << " couldn't sign " << RESET << form.getName() << " because " << e.what() << std::endl;
+    if (form.getIsSigned() == true)
+        std::cout << BOLD BLUE << form.getName() << BOLD GREEN << " is already signed" << RESET << ", so " << BOLD CYAN UNDERLINE CYAN << getName() << RESET << BOLD RED << " couldn't sign it !" << RESET << std::endl;
+    else
+    {
+        try
+	    {
+            form.beSigned(*this);
+            std::cout << BOLD CYAN UNDERLINE CYAN << name << RESET << BOLD MAGENTA << " signed " << BOLD CYAN << form << RESET << std::endl;
+        }
+        catch (std::exception &e)
+	    {
+            std::cout << BOLD CYAN UNDERLINE CYAN << name << RESET << BOLD MAGENTA << " couldn't sign " << BOLD CYAN << form << RESET << " because " << e.what() << std::endl;
+        }
     }
 }

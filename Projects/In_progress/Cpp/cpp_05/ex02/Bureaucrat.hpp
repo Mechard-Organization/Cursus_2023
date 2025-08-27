@@ -20,6 +20,7 @@
 /* Codes ANSI pour la couleur du texte */
 // Réinitialisation
 #define RESET          "\033[0m"
+#define STANDARD       "\033[0;"
 #define BOLD           "\033[1;"
 #define UNDERLINE      "\033[4;"
 #define INVERT         "\033[7;"

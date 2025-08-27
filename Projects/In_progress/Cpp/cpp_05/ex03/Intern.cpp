@@ -75,11 +75,11 @@ AForm *Intern::makeForm(const std::string &formName, const std::string &target) 
         if (mappings[i].name == formName)
 		{
             AForm *form = mappings[i].creator(target);
-            std::cout << "Intern creates " << *form << std::endl;
+            std::cout << BOLD YELLOW UNDERLINE YELLOW << "Intern" << RESET << " create " << *form << " " << UNDERLINE CYAN << formName << RESET << " form" << std::endl;
             return form;
         }
     }
 
-    std::cout << "Intern cannot create form: " << formName << std::endl;
+    std::cout << BOLD YELLOW UNDERLINE YELLOW << "Intern" << RESET << BOLD RED << " cannot create form: " << UNDERLINE CYAN BOLD CYAN << formName << RESET << std::endl;
     return NULL;
 }

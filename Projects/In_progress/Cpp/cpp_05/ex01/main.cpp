@@ -15,34 +15,35 @@
 
 int main()
 {
+    std::cout << BOLD YELLOW << "-------------------------------------- Tests --------------------------------------" << std::endl;
+
     try
 	{
-        Bureaucrat Arthur("Arthur Dent", 50);
-        Form formA("FormA", 100, 100);
+        // ---- Tests existants ----
+        std::cout << STANDARD YELLOW << "------------------------ Test 1 : Création de Bureaucrates ------------------------" << std::endl;
+        // Création des Bureaucrates 'Arthur Dent' et 'Humma Kavula'
+        Bureaucrat Arthur("Arthur Dent", 1);
         std::cout << Arthur << std::endl;
-        std::cout << formA << std::endl;
-        Arthur.signForm(formA);
-        std::cout << formA << std::endl;
-        Arthur.signForm(formA);
-        std::cout << formA << std::endl;
-	}
+        Bureaucrat Humma("Humma Kavula", 150);
+        std::cout << Humma << std::endl;
+
+    }
     catch (std::exception &e)
 	{
         std::cerr << "Exception: " << e.what() << std::endl;
     }
 
-	std::cout << std::endl;
-    std::cout << "----------------------------" << std::endl;
-	std::cout << std::endl;
-
     try
 	{
+        // ---- Tests supplémentaires ----
+        std::cout << STANDARD YELLOW << "\n------------------------- Test 3 : Signature de formulaire ------------------------" << std::endl;
+        // Signatures du formlaire précédemment créé. 1 test avec Humma car low grade puis signature avec Arthur
+        Bureaucrat Arthur("Arthur Dent", 1);
         Bureaucrat Humma("Humma Kavula", 150);
-        Form formB("FormB", 100, 100);
-        std::cout << Humma << std::endl;
-        std::cout << formB << std::endl;
-        Humma.signForm(formB);
-        std::cout << formB << std::endl;
+        Form formA("FormA", 100, 100);
+        std::cout << formA << std::endl;
+        Humma.signForm(formA);
+        Arthur.signForm(formA);
     }
     catch (std::exception &e)
 	{

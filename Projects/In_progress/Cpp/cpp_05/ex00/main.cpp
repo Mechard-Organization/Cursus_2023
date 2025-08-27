@@ -14,6 +14,8 @@
 
 int main()
 {
+    std::cout << BOLD YELLOW << "-------------------------------------- Tests --------------------------------------" << RESET << std::endl;
+
     try
 	{
         Bureaucrat Arthur("Arthur Dent", 2);
@@ -25,7 +27,7 @@ int main()
     }
     catch (std::exception &e)
 	{
-        std::cerr << "Exception: " << e.what() << std::endl;
+        std::cerr << "Arthur: Exception: " << e.what() << std::endl;
 	}
 
     try
@@ -36,7 +38,7 @@ int main()
     }
     catch (std::exception &e)
 	{
-        std::cerr << "Exception: " << e.what() << std::endl;
+        std::cerr << "Sarah: Exception: " << e.what() << std::endl;
 	}
 	std::cout << std::endl;
     std::cout << "----------------------------" << std::endl;
@@ -52,7 +54,7 @@ int main()
     }
     catch (std::exception &e)
 	{
-        std::cerr << "Exception: " << e.what() << std::endl;
+        std::cerr << "Humma: Exception: " << e.what() << std::endl;
 	}
     try
 	{
@@ -62,7 +64,7 @@ int main()
     }
     catch (std::exception &e)
 	{
-        std::cerr << "Exception: " << e.what() << std::endl;
+        std::cerr << "Sarah: Exception: " << e.what() << std::endl;
 	}
     return 0;
 }

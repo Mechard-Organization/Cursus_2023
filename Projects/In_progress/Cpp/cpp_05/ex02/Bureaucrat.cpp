@@ -62,30 +62,35 @@ void Bureaucrat::decrementGrade()
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-    return "Bureaucrat: Grade trop haut !";
+    return BOLD RED "Grade too high !" RESET;
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return "Bureaucrat: Grade trop bas !";
+    return BOLD RED "Grade too low !" RESET;
 }
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat)
 {
-    out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
+    out << BOLD CYAN UNDERLINE CYAN << bureaucrat.getName() << RESET << ", bureaucrat grade " << BOLD CYAN UNDERLINE CYAN << bureaucrat.getGrade() << RESET << ".";
     return out;
 }
 
 void Bureaucrat::signForm(AForm &form) const
 {
-    try
-	{
-        form.beSigned(*this);
-        std::cout << name << " signed " << form.getName() << std::endl;
-    }
-    catch (std::exception &e)
-	{
-        std::cout << name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+    if (form.getIsSigned() == true)
+        std::cout << BOLD BLUE << form.getName() << BOLD GREEN << " is already signed" << RESET << ", so " << BOLD CYAN UNDERLINE CYAN << getName() << RESET << BOLD RED << " couldn't sign it !" << RESET << std::endl;
+    else
+    {
+        try
+	    {
+            form.beSigned(*this);
+            std::cout << UNDERLINE CYAN BOLD CYAN << name << RESET << BOLD MAGENTA << " signed " << BOLD BLUE << form << RESET << std::endl;
+        }
+        catch (std::exception &e)
+	    {
+            std::cout << UNDERLINE CYAN BOLD CYAN << name << RESET << BOLD MAGENTA << " couldn't sign " << BOLD BLUE << form << RESET << " because " << e.what() << std::endl;
+        }
     }
 }
 
@@ -94,10 +99,10 @@ void Bureaucrat::executeForm(AForm const & form) const
     try
 	{
         form.execute(*this);
-        std::cout << name << " executed " << form << std::endl;
+        std::cout << UNDERLINE CYAN BOLD CYAN << name << RESET << BOLD GREEN << " executed " << RESET << form << RESET << std::endl;
     }
     catch (std::exception &e)
 	{
-        std::cout << name << " couldn't execute " << form << " because " << e.what() << std::endl;
+        std::cout << UNDERLINE CYAN BOLD CYAN << name << RESET << BOLD RED << " couldn't execute " << RESET << form << RESET << " because " << e.what() << std::endl;
     }
 }
