@@ -20,18 +20,18 @@ int main()
     data.letter = 'A';
 
     uintptr_t raw = Serializer::serialize(&data);
-    std::cout << "Adresse originale : " << &data << std::endl;
-    std::cout << "Valeur sérialisée : " << raw << std::endl;
+    std::cout << BOLD CYAN UNDERLINE CYAN << "Adresse originale" << RESET << " : " << UNDERLINE YELLOW << &data << RESET << std::endl;
+    std::cout << BOLD CYAN UNDERLINE CYAN << "Valeur sérialisée" << RESET << " : " << UNDERLINE YELLOW << raw << RESET << std::endl;
 
     Data* newData = Serializer::deserialize(raw);
-    std::cout << "Adresse désérialisée : " << newData << std::endl;
-    std::cout << "Données récupérées : number = " << newData->number 
-              << ", letter = " << newData->letter << std::endl;
+    std::cout << BOLD CYAN UNDERLINE CYAN << "Adresse désérialisée" << RESET << " : " << UNDERLINE YELLOW << newData << RESET << std::endl;
+    std::cout << BOLD CYAN UNDERLINE CYAN << "Données récupérées" << RESET << " : number = " << STANDARD YELLOW << newData->number 
+              << RESET << ", letter = " << STANDARD YELLOW << newData->letter << RESET << std::endl;
 
     if (newData == &data)
-        std::cout << "La sérialisation/désérialisation a réussi." << std::endl;
+        std::cout << BOLD GREEN << "La sérialisation/désérialisation a réussi." << RESET << std::endl;
     else
-        std::cout << "Erreur dans la sérialisation/désérialisation." << std::endl;
+        std::cout << BOLD RED << "Erreur dans la sérialisation/désérialisation." << RESET << std::endl;
 
     return 0;
 }

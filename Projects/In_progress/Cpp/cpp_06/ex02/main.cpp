@@ -16,10 +16,10 @@ int main()
 {
     Base* p = generate();
     
-    std::cout << "Identification via pointeur: ";
+    std::cout << BOLD CYAN UNDERLINE CYAN << "Identification via pointeur" << RESET << ": " << BOLD GREEN;
     identify(p);
     
-    std::cout << "Identification via référence: ";
+    std::cout << BOLD CYAN UNDERLINE CYAN << "Identification via référence" << RESET << ": " << BOLD GREEN;
     identify(*p);
     
     delete p;

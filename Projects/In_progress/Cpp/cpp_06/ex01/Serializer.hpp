@@ -24,6 +24,7 @@ public:
 
 private:
     Serializer();
+    ~Serializer();
     Serializer(const Serializer&);
     Serializer& operator=(const Serializer&);
 
