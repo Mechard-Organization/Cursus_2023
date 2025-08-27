@@ -7,6 +7,3 @@
 [submodule "Projects/IRC/ft_irc"]
 	path = Projects/IRC/ft_irc
 	url = https://github.com/EniumRaphael/ft_irc.git
-[submodule "Projects/Cpp/cpp05_100"]
-	path = Projects/Cpp/cpp05_100
-	url = git@vogsphere.42paris.fr:vogsphere/intra-uuid-9337bd21-0fae-4b3d-b6f8-b8efc328e08d-6659286-mechard
