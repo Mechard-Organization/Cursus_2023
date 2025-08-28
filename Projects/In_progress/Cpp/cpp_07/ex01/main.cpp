@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 05:01:14 by mechard           #+#    #+#             */
-/*   Updated: 2025/03/27 06:01:21 by mechard          ###   ########.fr       */
+/*   Updated: 2025/08/28 15:12:15 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ int main(void)
 	std::cout << "----------------Test 1----------------" << std::endl;
     int arr1[] = {1, 2, 3, 4, 5};
     size_t size1 = sizeof(arr1) / sizeof(arr1[0]);
-    std::cout << YELLOW2 << "Test 1 - Affichage du tableau d'entiers : " << std::endl << BLUE2 << "[ ";
+    std::cout << YELLOW2 << "Test 1 - Affichage du tableau d'entiers : " << std::endl << RESET << "[ " << BLUE2;
     iter(arr1, size1, printInt);
     std::cout << RESET << "]" << std::endl << std::endl;
     
     // Test 2 : Incrémenter chaque entier du tableau
 	std::cout << "----------------Test 2----------------" << std::endl;
-    int arr2[] = {10, 20, 30, 40, 50};
+    int arr2[] = {1, 5, 10, 20, 30, 40, 50};
     size_t size2 = sizeof(arr2) / sizeof(arr2[0]);
     std::cout << YELLOW2 << "Test 2 - Incrémentation du tableau d'entiers : " << std::endl << GREEN2 << "avant :" << RESET << std::endl << "[ " << BLUE2;
     iter(arr2, size2, printInt);
@@ -70,10 +70,10 @@ int main(void)
     
     // Test 3 : Multiplier chaque entier du tableau par 2
 	std::cout << "----------------Test 3----------------" << std::endl;
-    int arr3[] = {5, 7, 9, 10, 15};
+    int arr3[] = {5, 7, 9, 10, 15, 699};
     size_t size3 = sizeof(arr3) / sizeof(arr3[0]);
 	std::cout << YELLOW2 << "Test 3 - Multiplication par 2 du tableau d'entiers : " << std::endl << GREEN2 << "avant :" << RESET << std::endl << "[ " << BLUE2;
-    iter(arr2, size2, printInt);
+    iter(arr3, size3, printInt);
     iter(arr3, size3, multiplyInt);
 	std::cout << RESET << "]" << std::endl << GREEN2 << "aprés :" << RESET << std::endl << "[ " << BLUE2;
     iter(arr3, size3, printInt);

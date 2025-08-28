@@ -33,7 +33,7 @@ bool operator>(const Test<T>& a, const Test<T>& b)
     return b < a;
 }
 
-int main(void)
+int main(int ac, char **av)
 {
     // Test avec des entiers
     std::cout << "---------First part : Integer---------" << std::endl;
@@ -115,12 +115,27 @@ int main(void)
         if (minResult.id == s2.id)
             std::cout << BLUE2 << "min(c, d) = " << GREEN2 << minResult.value << ", id : " << minResult.id << ", variable : d " << RESET << std::endl;
         else
-            std::cout << RED2 << "La variable retournée n'est pas la première..." << RESET << std::endl;
+            std::cout << RED2 << "La variable retournée n'est pas la seconde..." << RESET << std::endl;
         
         if (maxResult.id == s2.id)
             std::cout << BLUE2 << "max(c, d) = " << GREEN2 << maxResult.value << ", id : " << maxResult.id << ", variable : d " << RESET << std::endl;
         else
-            std::cout << RED2 << "La variable retournée n'est pas la première..." << RESET << std::endl;
+            std::cout << RED2 << "La variable retournée n'est pas la seconde..." << RESET << std::endl;
+    }
+    {
+        if (ac != 3 && ac != 1)
+            std::cout << "\nYou can try this exercise with two arguments !\n./ex00 <string1> <string2>" << std::endl;
+        else if (ac == 3)
+        {
+            Test<std::string> string1(av[1], 1995);
+            Test<std::string> string2(av[2], 2002);
+            ::swap(string1, string2);
+            Test<std::string> minResult = ::min(string1, string2);
+            Test<std::string> maxResult = ::max(string1, string2);
+            std::cout << BLUE2 << "string1 = " << YELLOW2 << string1.value << "\"" << WHITE2 << ", " << YELLOW2 << string1.id << WHITE2 << ", " << BLUE2 << "string2 = " << YELLOW2 << string2.value << "\"" << WHITE2 << ", " << YELLOW2 << string2.id << RESET << std::endl << std::endl;
+            std::cout << BLUE2 << "min(string1, string2) = " << GREEN2 << GREEN2 << minResult.value << ", id : " << minResult.id  << RESET << std::endl;
+            std::cout << BLUE2 << "max(string1, string2) = " << GREEN2 << GREEN2 << maxResult.value << ", id : " << maxResult.id  << RESET << std::endl;
+        }
     }
     
     return 0;

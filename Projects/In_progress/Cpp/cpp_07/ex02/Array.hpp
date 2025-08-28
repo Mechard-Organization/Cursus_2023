@@ -14,6 +14,7 @@
 #define ARRAY_HPP
 
 #include <exception>
+#include <iostream>
 #include <cstdlib>
 #include <ctime>
 
