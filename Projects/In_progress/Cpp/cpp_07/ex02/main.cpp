@@ -18,7 +18,7 @@ struct s_test {
 	char b;
 };
 
-#define MAX_VAL 38
+#define MAX_VAL 750
 int main(int, char**)
 {
 	// Test avec le main.cpp fourni ! //
