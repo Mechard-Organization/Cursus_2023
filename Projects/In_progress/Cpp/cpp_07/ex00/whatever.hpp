@@ -20,25 +20,24 @@
 // Réinitialisation
 #define RESET          "\033[0m"
 
-// Couleurs standards du texte
-#define BLACK1          "\033[0;30m"
-#define RED1            "\033[0;31m"
-#define GREEN1          "\033[0;32m"
-#define YELLOW1         "\033[0;33m"
-#define BLUE1           "\033[0;34m"
-#define MAGENTA1        "\033[0;35m"
-#define CYAN1           "\033[0;36m"
-#define WHITE1          "\033[0;37m"
+/* Codes ANSI pour la couleur du texte */
+// Réinitialisation
+#define RESET          "\033[0m"
+#define STANDARD       "\033[0;"
+#define BOLD           "\033[1;"
+#define UNDERLINE      "\033[4;"
+#define INVERT         "\033[7;"
+#define MASKED         "\033[8;"
 
-// Couleurs en gras (couleurs claires)
-#define BLACK2     "\033[1;30m"
-#define RED2       "\033[1;31m"
-#define GREEN2     "\033[1;32m"
-#define YELLOW2    "\033[1;33m"
-#define BLUE2      "\033[1;34m"
-#define MAGENTA2   "\033[1;35m"
-#define CYAN2      "\033[1;36m"
-#define WHITE2     "\033[1;37m"
+// Couleurs du texte
+#define BLACK          "30m"
+#define RED            "31m"
+#define GREEN          "32m"
+#define YELLOW         "33m"
+#define BLUE           "34m"
+#define MAGENTA        "35m"
+#define CYAN           "36m"
+#define WHITE          "37m"
 
 template<typename T>
 void swap(T &a, T &b)

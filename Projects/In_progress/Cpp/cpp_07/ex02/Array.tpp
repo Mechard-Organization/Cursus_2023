@@ -21,9 +21,9 @@ Array<T>::Array(unsigned int n) : _array(new T[n]()), _size(n)
 }
 
 template <typename T>
-Array<T>::Array(const Array<T>& other) : _array(0), _size(other._size)
+Array<T>::Array(const Array<T>& other) : _array(new T[other._size]), _size(other._size)
 {
-    if (_size > 0)
+    if (_size)
 	{
         _array = new T[_size];
         for (unsigned int i = 0; i < _size; i++)
@@ -62,7 +62,7 @@ template <typename T>
 T& Array<T>::operator[](int index)
 {
     if (index < 0 || static_cast<unsigned int>(index) >= _size)
-        throw std::out_of_range("Index out of bounds");
+        throw OutOfRangeException();
     return _array[index];
 }
 
@@ -70,7 +70,7 @@ template <typename T>
 const T& Array<T>::operator[](int index) const
 {
     if (index < 0 || static_cast<unsigned int>(index) >= _size)
-        throw std::out_of_range("Index out of bounds");
+        throw OutOfRangeException();
     return _array[index];
 }
 
@@ -78,4 +78,10 @@ template <typename T>
 unsigned int Array<T>::size() const
 {
     return _size;
+}
+
+template <typename T>
+const char *Array<T>::OutOfRangeException::what() const throw()
+{
+	return (BOLD RED "Index out of bounds" RESET);
 }

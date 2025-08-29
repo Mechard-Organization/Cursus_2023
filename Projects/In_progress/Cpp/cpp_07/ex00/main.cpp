@@ -36,30 +36,30 @@ bool operator>(const Test<T>& a, const Test<T>& b)
 int main(int ac, char **av)
 {
     // Test avec des entiers
-    std::cout << "---------First part : Integer---------" << std::endl;
+    std::cout << BOLD YELLOW << "---------" << UNDERLINE YELLOW << "First part" << RESET << BOLD YELLOW << " : Integer---------" << RESET << std::endl;
     {
         // Test 1 : a < b
-        std::cout << "----------------Test 1----------------" << std::endl;
+        std::cout << BOLD CYAN << "----------------Test 1----------------" << RESET << std::endl;
         int a = 12;
         int b = 24;
         ::swap(a, b);
-        std::cout << BLUE2 << "a = " << YELLOW2 << a << WHITE2 << ", " << BLUE2 << "b = " << YELLOW2 << b << RESET << std::endl << std::endl;
-        std::cout << BLUE2 << "min(a, b) = " << GREEN2 << ::min(a, b) << RESET << std::endl;
-        std::cout << BLUE2 << "max(a, b) = " << GREEN2 << ::max(a, b) << RESET << std::endl;
+        std::cout << BOLD BLUE << "a = " << BOLD YELLOW << a << RESET << ", " << BOLD BLUE << "b = " << BOLD YELLOW << b << RESET << std::endl;
+        std::cout << BOLD BLUE << "min(a, b) = " << BOLD GREEN << ::min(a, b) << RESET << std::endl;
+        std::cout << BOLD BLUE << "max(a, b) = " << BOLD GREEN << ::max(a, b) << RESET << std::endl;
     }
     {
         // Test 2 : a > b
-        std::cout << "----------------Test 2----------------" << std::endl;
+        std::cout << BOLD CYAN << "----------------Test 2----------------" << RESET << std::endl;
         int a = 42;
         int b = 24;
         ::swap(a, b);
-        std::cout << BLUE2 << "a = " << YELLOW2 << a << WHITE2 << ", " << BLUE2 << "b = " << YELLOW2 << b << RESET << std::endl << std::endl;
-        std::cout << BLUE2 << "min(a, b) = " << GREEN2 << ::min(a, b) << RESET << std::endl;
-        std::cout << BLUE2 << "max(a, b) = " << GREEN2 << ::max(a, b) << RESET << std::endl;
+        std::cout << BOLD BLUE << "a = " << BOLD YELLOW << a << RESET << ", " << BOLD BLUE << "b = " << BOLD YELLOW << b << RESET << std::endl;
+        std::cout << BOLD BLUE << "min(a, b) = " << BOLD GREEN << ::min(a, b) << RESET << std::endl;
+        std::cout << BOLD BLUE << "max(a, b) = " << BOLD GREEN << ::max(a, b) << RESET << std::endl;
     }
     {
         // Test 3 : a = b
-        std::cout << "----------------Test 3----------------" << std::endl;
+        std::cout << BOLD CYAN << "----------------Test 3----------------" << RESET << std::endl;
         int a = 42;
         int b = 42;
         Test<int> t1(a, 1995);
@@ -67,43 +67,44 @@ int main(int ac, char **av)
         ::swap(a, b);
         Test<int> minResult = ::min(t1, t2);
         Test<int> maxResult = ::max(t1, t2);
-        std::cout << RESET << "["<< BLUE2 << "a : " << YELLOW2  << "\"" << t1.value << "\"" << WHITE2 << ", " << YELLOW2 << t1.id << RESET << "]" << RESET << " [" << BLUE2 << "b : " << "\"" << t2.value << "\"" << WHITE2 << ", " << YELLOW2 << t2.id << RESET << "]" << std::endl << std::endl;
+        std::cout << RESET << "["<< BOLD BLUE << "a : " << BOLD YELLOW  << "\"" << t1.value << "\"" << RESET << ", " << BOLD YELLOW << t1.id << RESET << "]" << RESET << " [" << BOLD BLUE << "b : " << BOLD YELLOW << "\"" << t2.value << "\"" << RESET << ", " << BOLD YELLOW << t2.id << RESET << "]" << std::endl;
         if (minResult.id == t2.id)
-            std::cout << BLUE2 << "min(a, b) = " << GREEN2 << minResult.value << ", id : " << minResult.id << ", variable : b " << RESET << std::endl;
+            std::cout << BOLD BLUE << "min(a, b) = " << BOLD GREEN << minResult.value << ", id : " << minResult.id << ", variable : b " << RESET << std::endl;
         else
-            std::cout << RED2 << "La variable retournée n'est pas la première..." << RESET << std::endl;
+            std::cout << BOLD RED << "La variable retournée n'est pas la première..." << RESET << std::endl;
         
         if (maxResult.id == t2.id)
-            std::cout << BLUE2 << "max(a, b) = " << GREEN2 << maxResult.value << ", id : " << maxResult.id << ", variable : b " << RESET << std::endl;
+            std::cout << BOLD BLUE << "max(a, b) = " << BOLD GREEN << maxResult.value << ", id : " << maxResult.id << ", variable : b " << RESET << std::endl;
         else
-            std::cout << RED2 << "La variable retournée n'est pas la première..." << RESET << std::endl;
+            std::cout << BOLD RED << "La variable retournée n'est pas la première..." << RESET << std::endl;
     }
 
     // Test avec des chaînes de caractères
-    std::cout << std::endl << "---------Second part : String---------" << std::endl;
+    std::cout << BOLD YELLOW << "\n---------" << UNDERLINE YELLOW << "Second part" << RESET << BOLD YELLOW << " : String---------" << std::endl;
+    
     {
         // Test 4 : c < d
-        std::cout << "----------------Test 4----------------" << std::endl;
+        std::cout << BOLD CYAN << "----------------Test 4----------------" << RESET << std::endl;
         std::string c = "chaine12";
         std::string d = "chaine24";
         ::swap(c, d);
-        std::cout << BLUE2 << "c = " << YELLOW2 << c << WHITE2 << ", " << BLUE2 << "d = " << YELLOW2 << d << RESET << std::endl << std::endl;
-        std::cout << BLUE2 << "min(c, d) = " << GREEN2 << ::min(c, d) << RESET << std::endl;
-        std::cout << BLUE2 << "max(c, d) = " << GREEN2 << ::max(c, d) << RESET << std::endl;
+        std::cout << BOLD BLUE << "c = " << BOLD YELLOW << c << RESET << ", " << BOLD BLUE << "d = " << BOLD YELLOW << d << RESET << std::endl;
+        std::cout << BOLD BLUE << "min(c, d) = " << BOLD GREEN << ::min(c, d) << RESET << std::endl;
+        std::cout << BOLD BLUE << "max(c, d) = " << BOLD GREEN << ::max(c, d) << RESET << std::endl;
     }
     {
         // Test 5 : c > d
-        std::cout << "----------------Test 5----------------" << std::endl;
+        std::cout << BOLD CYAN << "----------------Test 5----------------" << RESET << std::endl;
         std::string c = "chaine42";
         std::string d = "chaine24";
         ::swap(c, d);
-        std::cout << BLUE2 << "c = " << YELLOW2 << c << WHITE2 << ", " << BLUE2 << "d = " << YELLOW2 << d << RESET << std::endl << std::endl;
-        std::cout << BLUE2 << "min(c, d) = " << GREEN2 << ::min(c, d) << RESET << std::endl;
-        std::cout << BLUE2 << "max(c, d) = " << GREEN2 << ::max(c, d) << RESET << std::endl;
+        std::cout << BOLD BLUE << "c = " << BOLD YELLOW << c << RESET << ", " << BOLD BLUE << "d = " << BOLD YELLOW << d << RESET << std::endl;
+        std::cout << BOLD BLUE << "min(c, d) = " << BOLD GREEN << ::min(c, d) << RESET << std::endl;
+        std::cout << BOLD BLUE << "max(c, d) = " << BOLD GREEN << ::max(c, d) << RESET << std::endl;
     }
     {
         // Test 6 : c = d en utilisant Test pour vérifier quelle variable est retournée
-        std::cout << "----------------Test 6----------------" << std::endl;
+        std::cout << BOLD CYAN << "----------------Test 6----------------" << RESET << std::endl;
         std::string c = "chaine42";
         std::string d = "chaine42";
         Test<std::string> s1(c, 1995);
@@ -111,16 +112,16 @@ int main(int ac, char **av)
         ::swap(c, d);
         Test<std::string> minResult = ::min(s1, s2);
         Test<std::string> maxResult = ::max(s1, s2);
-        std::cout << RESET << "["<< BLUE2 << "c : " << YELLOW2 << "\"" << s1.value << "\"" << WHITE2 << ", " << YELLOW2 << s1.id << RESET << "]" << RESET << " [" << BLUE2 << "d : " << YELLOW2 << "\"" << s2.value << "\"" << WHITE2 << ", " << YELLOW2 << s2.id << RESET << "]" << std::endl << std::endl;
+        std::cout << RESET << "["<< BOLD BLUE << "c : " << BOLD YELLOW << "\"" << s1.value << "\"" << RESET << ", " << BOLD YELLOW << s1.id << RESET << "]" << RESET << " [" << BOLD BLUE << "d : " << BOLD YELLOW << "\"" << s2.value << "\"" << RESET << ", " << BOLD YELLOW << s2.id << RESET << "]" << std::endl;
         if (minResult.id == s2.id)
-            std::cout << BLUE2 << "min(c, d) = " << GREEN2 << minResult.value << ", id : " << minResult.id << ", variable : d " << RESET << std::endl;
+            std::cout << BOLD BLUE << "min(c, d) = " << BOLD GREEN << minResult.value << ", id : " << minResult.id << ", variable : d " << RESET << std::endl;
         else
-            std::cout << RED2 << "La variable retournée n'est pas la seconde..." << RESET << std::endl;
+            std::cout << BOLD RED << "La variable retournée n'est pas la seconde..." << RESET << std::endl;
         
         if (maxResult.id == s2.id)
-            std::cout << BLUE2 << "max(c, d) = " << GREEN2 << maxResult.value << ", id : " << maxResult.id << ", variable : d " << RESET << std::endl;
+            std::cout << BOLD BLUE << "max(c, d) = " << BOLD GREEN << maxResult.value << ", id : " << maxResult.id << ", variable : d " << RESET << std::endl;
         else
-            std::cout << RED2 << "La variable retournée n'est pas la seconde..." << RESET << std::endl;
+            std::cout << BOLD RED << "La variable retournée n'est pas la seconde..." << RESET << std::endl;
     }
     {
         if (ac != 3 && ac != 1)
@@ -132,9 +133,9 @@ int main(int ac, char **av)
             ::swap(string1, string2);
             Test<std::string> minResult = ::min(string1, string2);
             Test<std::string> maxResult = ::max(string1, string2);
-            std::cout << BLUE2 << "string1 = " << YELLOW2 << string1.value << "\"" << WHITE2 << ", " << YELLOW2 << string1.id << WHITE2 << ", " << BLUE2 << "string2 = " << YELLOW2 << string2.value << "\"" << WHITE2 << ", " << YELLOW2 << string2.id << RESET << std::endl << std::endl;
-            std::cout << BLUE2 << "min(string1, string2) = " << GREEN2 << GREEN2 << minResult.value << ", id : " << minResult.id  << RESET << std::endl;
-            std::cout << BLUE2 << "max(string1, string2) = " << GREEN2 << GREEN2 << maxResult.value << ", id : " << maxResult.id  << RESET << std::endl;
+            std::cout << BOLD BLUE << "string1 = " << BOLD YELLOW << string1.value << "\"" << RESET << ", " << BOLD YELLOW << string1.id << RESET << ", " << BOLD BLUE << "string2 = " << BOLD YELLOW << string2.value << "\"" << RESET << ", " << BOLD YELLOW << string2.id << RESET << std::endl;
+            std::cout << BOLD BLUE << "min(string1, string2) = " << BOLD GREEN << BOLD GREEN << minResult.value << ", id : " << minResult.id  << RESET << std::endl;
+            std::cout << BOLD BLUE << "max(string1, string2) = " << BOLD GREEN << BOLD GREEN << maxResult.value << ", id : " << maxResult.id  << RESET << std::endl;
         }
     }
     
