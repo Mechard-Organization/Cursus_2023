@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Array.hpp"
+
 template <typename T>
 Array<T>::Array() : _array(0), _size(0)
 {
@@ -21,7 +23,7 @@ Array<T>::Array(unsigned int n) : _array(new T[n]()), _size(n)
 }
 
 template <typename T>
-Array<T>::Array(const Array<T>& other) : _array(new T[other._size]), _size(other._size)
+Array <T>::Array(const Array<T>& other) : _array(new T[other._size]), _size(other._size)
 {
     if (_size)
 	{
