@@ -40,14 +40,14 @@ Span::~Span()
 void Span::addNumber(int num)
 {
 	if (_numbers.size() >= _maxSize)
-		throw std::runtime_error("Capacité maximale atteinte");
+		throw std::runtime_error("Full");
 	_numbers.push_back(num);
 }
 
 int Span::shortestSpan() const
 {
 	if (_numbers.size() < 2)
-		throw std::runtime_error("Pas assez de nombres pour calculer un span");
+		throw std::runtime_error("Not enought numbers !");
 
 	std::vector<int> tmp = _numbers;
 	std::sort(tmp.begin(), tmp.end());
@@ -65,7 +65,7 @@ int Span::shortestSpan() const
 int Span::longestSpan() const
 {
 	if (_numbers.size() < 2)
-		throw std::runtime_error("Pas assez de nombres pour calculer un span");
+		throw std::runtime_error("Not enought numbers !");
 
 	int minVal = *std::min_element(_numbers.begin(), _numbers.end());
 	int maxVal = *std::max_element(_numbers.begin(), _numbers.end());

@@ -63,7 +63,7 @@ public:
 		for (Iterator it = begin; it != end; ++it)
 		{
 			if (_numbers.size() >= _maxSize)
-				throw std::runtime_error("Capacité maximale atteinte lors de l'ajout de la plage d'itérateurs");
+				throw std::runtime_error("Full");
 			_numbers.push_back(*it);
 		}
 	}

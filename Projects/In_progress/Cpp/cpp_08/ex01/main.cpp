@@ -14,6 +14,7 @@
 #include <vector>
 #include "Span.hpp"
 #include <cstdlib>
+#include <ctime>
 
 int main()
 {
@@ -47,7 +48,7 @@ int main()
 	}
 	catch (std::exception &e)
 	{
-		std::cout << RED2 << "Erreur attendue: " << RESET << e.what() << std::endl;
+		std::cout << RED2 << "Exception: " << RESET << e.what() << std::endl;
 	}
 
 	// Test 3 : Tentative d'ajout en dépassant la capacité
@@ -62,7 +63,7 @@ int main()
 	}
 	catch (std::exception &e)
 	{
-		std::cout << RED2 << "Erreur attendue: " << RESET << e.what() << std::endl;
+		std::cout << RED2 << "Exception: " << RESET << e.what() << std::endl;
 	}
 
 	// Test 4 : Ajout d'une plage d'itérateurs avec la fonction template addNumbers
@@ -93,8 +94,9 @@ int main()
 		unsigned int N = 10000;
 		Span sp = Span(N);
 		std::vector<int> randomNumbers;
+		std::srand(std::time(0));
 		for (unsigned int i = 0; i < N; ++i)
-			randomNumbers.push_back(rand() % 100000);
+			randomNumbers.push_back(std::rand());
 		sp.addNumbers(randomNumbers.begin(), randomNumbers.end());
 		std::cout << GREEN2 << "Shortest Span: " << BLUE2 << sp.shortestSpan() << RESET<< std::endl;
 		std::cout << GREEN2 << "Longest Span: " << BLUE2 << sp.longestSpan() << RESET << std::endl;
