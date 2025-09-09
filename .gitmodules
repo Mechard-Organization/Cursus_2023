@@ -1,12 +1,3 @@
-[submodule "Projects/In_progress/Cpp/cpp_05"]
-	path = Projects/In_progress/Cpp/cpp_05
-	url = git@vogsphere.42paris.fr:vogsphere/intra-uuid-9337bd21-0fae-4b3d-b6f8-b8efc328e08d-6659286-mechard
-[submodule "Projects/IRC_125/IRC_repo_github"]
-	path = Projects/IRC_125/IRC_repo_github
-	url = git@github.com:M2000-fr/IRC.git
-[submodule "Projects/IRC/ft_irc"]
-	path = Projects/IRC/ft_irc
-	url = https://github.com/EniumRaphael/ft_irc.git
 [submodule "Projects/In_progress/ft_transcendence"]
 	path = Projects/In_progress/ft_transcendence
 	url = git@github.com:M2000-fr/ft_transcendence.git
