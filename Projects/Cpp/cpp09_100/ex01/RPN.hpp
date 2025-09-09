@@ -26,6 +26,8 @@ class RPN
 public:
 	RPN(const std::string &expression);
 	~RPN();
+	RPN(const RPN &other);
+	RPN &operator=(const RPN &other);
 	bool calculate(int &result) const;
 
 private:

@@ -17,6 +17,7 @@
 #include <deque>
 #include <string>
 #include <iostream>
+#include <iomanip>
 #include <cstdlib>
 #include <ctime>
 #include <cstdlib>
@@ -27,6 +28,8 @@ class PmergeMe
 public:
 	PmergeMe();
 	~PmergeMe();
+	PmergeMe(const PmergeMe &other);
+	PmergeMe &operator=(const PmergeMe &other);
 	bool addNumber(const std::string &numStr);
 	double sortVector();
 	double sortDeque();

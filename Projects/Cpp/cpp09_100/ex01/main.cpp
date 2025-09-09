@@ -12,17 +12,14 @@
 
 #include "RPN.hpp"
 
-int main(int argc, char **argv) {
-	if (argc != 2) {
-		std::cerr << "Error" << std::endl;
-		return 1;
-	}
+int main(int argc, char **argv)
+{
+	if (argc != 2)
+		return std::cerr << "Error" << std::endl, 1;
 	RPN rpn(argv[1]);
 	int result = 0;
-	if (!rpn.calculate(result)) {
-		std::cerr << "Error" << std::endl;
-		return 1;
-	}
+	if (!rpn.calculate(result))
+		return std::cerr << "Error" << std::endl, 1;
 	std::cout << result << std::endl;
 	return 0;
 }

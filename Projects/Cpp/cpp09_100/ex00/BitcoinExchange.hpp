@@ -27,6 +27,8 @@ class BitcoinExchange
 public:
 	BitcoinExchange(const std::string &dataFile);
 	~BitcoinExchange();
+	BitcoinExchange(const BitcoinExchange &other);
+	BitcoinExchange &operator=(const BitcoinExchange &other);
 	bool isDatabaseLoaded() const;
 	bool getExchangeRate(const std::string &date, double &rate) const;
 

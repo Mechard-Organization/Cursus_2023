@@ -12,18 +12,34 @@
 
 #include "RPN.hpp"
 
-RPN::RPN(const std::string &expression) : _expression(expression) {
+RPN::RPN(const std::string &expression) : _expression(expression)
+{
 }
 
-RPN::~RPN() {
+RPN::~RPN()
+{
 }
 
-bool RPN::calculate(int &result) const {
+RPN::RPN(const RPN &other)
+{
+	(void)other;
+}
+
+RPN &RPN::operator=(const RPN &other)
+{
+	(void)other;
+	return *this;
+}
+
+bool RPN::calculate(int &result) const
+{
 	std::istringstream iss(_expression);
 	std::stack<int> stk;
 	std::string token;
-	while (iss >> token) {
-		if (token == "+" || token == "-" || token == "*" || token == "/") {
+	while (iss >> token)
+	{
+		if (token == "+" || token == "-" || token == "*" || token == "/")
+		{
 			if (stk.size() < 2)
 				return false;
 			int right = stk.top();
@@ -37,17 +53,19 @@ bool RPN::calculate(int &result) const {
 				res = left - right;
 			else if (token == "*")
 				res = left * right;
-			else if (token == "/") {
+			else if (token == "/")
+			{
 				if (right == 0)
 					return false;
 				res = left / right;
 			}
 			stk.push(res);
-		} else {
-			for (size_t i = 0; i < token.size(); ++i) {
+		}
+		else
+		{
+			for (size_t i = 0; i < token.size(); ++i)
 				if (!std::isdigit(token[i]))
 					return false;
-			}
 			int num = std::atoi(token.c_str());
 			stk.push(num);
 		}

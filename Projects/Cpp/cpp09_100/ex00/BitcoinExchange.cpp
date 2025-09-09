@@ -12,29 +12,49 @@
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(const std::string &dataFile) : _loaded(false) {
+BitcoinExchange::BitcoinExchange(const std::string &dataFile) : _loaded(false)
+{
 	loadDatabase(dataFile);
 }
 
-BitcoinExchange::~BitcoinExchange() {}
+BitcoinExchange::~BitcoinExchange()
+{
+}
 
-bool BitcoinExchange::isDatabaseLoaded() const {
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
+{
+	(void)other;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
+{
+	(void)other;
+	return *this;
+}
+
+bool BitcoinExchange::isDatabaseLoaded() const 
+{
 	return _loaded;
 }
 
-void BitcoinExchange::loadDatabase(const std::string &dataFile) {
+void BitcoinExchange::loadDatabase(const std::string &dataFile) 
+{
 	std::ifstream infile(dataFile.c_str());
-	if (!infile) {
+	if (!infile)
+	{
 		std::cerr << "Error: could not open database file." << std::endl;
 		return;
 	}
 	std::string line;
-	if (std::getline(infile, line)) {
-		if (line.find("date") == std::string::npos) {
+	if (std::getline(infile, line))
+	{
+		if (line.find("date") == std::string::npos)
+		{
 			std::istringstream iss(line);
 			std::string date;
 			std::string rateStr;
-			if (std::getline(iss, date, ',') && std::getline(iss, rateStr)) {
+			if (std::getline(iss, date, ',') && std::getline(iss, rateStr))
+			{
 				size_t start = date.find_first_not_of(" \t");
 				size_t end = date.find_last_not_of(" \t");
 				if (start != std::string::npos && end != std::string::npos)
@@ -48,13 +68,15 @@ void BitcoinExchange::loadDatabase(const std::string &dataFile) {
 			}
 		}
 	}
-	while (std::getline(infile, line)) {
+	while (std::getline(infile, line))
+	{
 		if (line.empty())
 			continue;
 		std::istringstream iss(line);
 		std::string date;
 		std::string rateStr;
-		if (std::getline(iss, date, ',') && std::getline(iss, rateStr)) {
+		if (std::getline(iss, date, ',') && std::getline(iss, rateStr))
+		{
 			size_t start = date.find_first_not_of(" \t");
 			size_t end = date.find_last_not_of(" \t");
 			if (start != std::string::npos && end != std::string::npos)
@@ -74,10 +96,10 @@ bool BitcoinExchange::getExchangeRate(const std::string &date, double &rate) con
 	if (_data.empty())
 		return false;
 	std::map<std::string, double>::const_iterator it = _data.find(date);
-	if (it != _data.end()) {
-		rate = it->second;
-		return true;
-	} else {
+	if (it != _data.end())
+		return rate = it->second, true;
+	else
+	{
 		it = _data.upper_bound(date);
 		if (it == _data.begin())
 			return false;

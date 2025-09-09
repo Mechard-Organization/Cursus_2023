@@ -60,7 +60,6 @@ AForm *Intern::makeForm(const std::string &formName, const std::string &target) 
         std::string name;
         FormCreator creator;
     } formMapping;
-    
 
     formMapping mappings[3] =
 	{
@@ -68,7 +67,6 @@ AForm *Intern::makeForm(const std::string &formName, const std::string &target) 
         {"robotomy request", &createRobotomy},
         {"presidential pardon", &createPresidential}
     };
-    
 
     for (int i = 0; i < 3; i++)
 	{

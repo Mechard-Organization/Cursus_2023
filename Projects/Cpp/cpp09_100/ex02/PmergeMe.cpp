@@ -12,52 +12,71 @@
 
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe() {}
-PmergeMe::~PmergeMe() {}
+PmergeMe::PmergeMe()
+{
+}
 
-bool PmergeMe::addNumber(const std::string &numStr) {
-	for (size_t i = 0; i < numStr.size(); ++i) {
+PmergeMe::~PmergeMe()
+{
+}
+
+PmergeMe::PmergeMe(const PmergeMe &other)
+{
+	(void)other;
+}
+
+PmergeMe &PmergeMe::operator=(const PmergeMe &other)
+{
+	(void)other;
+	return *this;
+}
+
+bool PmergeMe::addNumber(const std::string &numStr)
+{
+	for (size_t i = 0; i < numStr.size(); ++i)
 		if (!std::isdigit(numStr[i]))
 			return false;
-	}
 	int num = std::atoi(numStr.c_str());
-	if (num < 0)
+	if (num <= 0)
 		return false;
 	_vector.push_back(num);
 	_deque.push_back(num);
 	return true;
 }
 
-void PmergeMe::printBefore() const {
+void PmergeMe::printBefore() const
+{
 	std::cout << "Before: ";
-	for (size_t i = 0; i < _vector.size(); ++i) {
+	for (size_t i = 0; i < _vector.size(); ++i)
 		std::cout << _vector[i] << " ";
-	}
 	std::cout << std::endl;
 }
 
-void PmergeMe::printAfterVector() const {
+void PmergeMe::printAfterVector() const
+{
 	std::cout << "After: ";
-	for (size_t i = 0; i < _vector.size(); ++i) {
+	for (size_t i = 0; i < _vector.size(); ++i)
 		std::cout << _vector[i] << " ";
-	}
 	std::cout << std::endl;
 }
 
-void PmergeMe::printAfterDeque() const {
+void PmergeMe::printAfterDeque() const
+{
 	std::cout << "After (deque): ";
-	for (size_t i = 0; i < _deque.size(); ++i) {
+	for (size_t i = 0; i < _deque.size(); ++i)
 		std::cout << _deque[i] << " ";
-	}
 	std::cout << std::endl;
 }
 
 // -------------------- TRI SUR VECTOR --------------------
-void PmergeMe::insertionSortVector(int left, int right) {
-	for (int i = left + 1; i <= right; ++i) {
+void PmergeMe::insertionSortVector(int left, int right)
+{
+	for (int i = left + 1; i <= right; ++i)
+	{
 		int key = _vector[i];
 		int j = i - 1;
-		while (j >= left && _vector[j] > key) {
+		while (j >= left && _vector[j] > key)
+		{
 			_vector[j + 1] = _vector[j];
 			j--;
 		}
@@ -65,11 +84,13 @@ void PmergeMe::insertionSortVector(int left, int right) {
 	}
 }
 
-void PmergeMe::mergeVector(int left, int mid, int right) {
+void PmergeMe::mergeVector(int left, int mid, int right)
+{
 	std::vector<int> leftVec(_vector.begin() + left, _vector.begin() + mid + 1);
 	std::vector<int> rightVec(_vector.begin() + mid + 1, _vector.begin() + right + 1);
 	int i = 0, j = 0, k = left;
-	while (i < (int)leftVec.size() && j < (int)rightVec.size()) {
+	while (i < (int)leftVec.size() && j < (int)rightVec.size())
+	{
 		if (leftVec[i] <= rightVec[j])
 			_vector[k++] = leftVec[i++];
 		else
@@ -81,10 +102,12 @@ void PmergeMe::mergeVector(int left, int mid, int right) {
 		_vector[k++] = rightVec[j++];
 }
 
-void PmergeMe::mergeSortVector(int left, int right) {
+void PmergeMe::mergeSortVector(int left, int right)
+{
 	if (left >= right)
 		return;
-	if (right - left + 1 <= INSERTION_SORT_THRESHOLD) {
+	if (right - left + 1 <= INSERTION_SORT_THRESHOLD)
+	{
 		insertionSortVector(left, right);
 		return;
 	}
@@ -94,20 +117,25 @@ void PmergeMe::mergeSortVector(int left, int right) {
 	mergeVector(left, mid, right);
 }
 
-double PmergeMe::sortVector() {
-	clock_t start = clock();
-	mergeSortVector(0, _vector.size() - 1);
-	clock_t end = clock();
-	double elapsed = (double)(end - start) / CLOCKS_PER_SEC;
-	return elapsed * 1e6;
+double PmergeMe::sortVector()
+{
+    std::clock_t start = std::clock();
+    mergeSortVector(0, _vector.size() - 1);
+    std::clock_t end = std::clock();
+
+    double elapsed = static_cast<double>(end - start) * 1000000.0 / CLOCKS_PER_SEC;
+    return elapsed; // en millisecondes avec décimales
 }
 
 // -------------------- TRI SUR DEQUE --------------------
-void PmergeMe::insertionSortDeque(int left, int right) {
-	for (int i = left + 1; i <= right; ++i) {
+void PmergeMe::insertionSortDeque(int left, int right)
+{
+	for (int i = left + 1; i <= right; ++i)
+	{
 		int key = _deque[i];
 		int j = i - 1;
-		while (j >= left && _deque[j] > key) {
+		while (j >= left && _deque[j] > key)
+		{
 			_deque[j + 1] = _deque[j];
 			j--;
 		}
@@ -115,11 +143,13 @@ void PmergeMe::insertionSortDeque(int left, int right) {
 	}
 }
 
-void PmergeMe::mergeDeque(int left, int mid, int right) {
+void PmergeMe::mergeDeque(int left, int mid, int right)
+{
 	std::deque<int> leftDeque(_deque.begin() + left, _deque.begin() + mid + 1);
 	std::deque<int> rightDeque(_deque.begin() + mid + 1, _deque.begin() + right + 1);
 	int i = 0, j = 0, k = left;
-	while (i < (int)leftDeque.size() && j < (int)rightDeque.size()) {
+	while (i < (int)leftDeque.size() && j < (int)rightDeque.size())
+	{
 		if (leftDeque[i] <= rightDeque[j])
 			_deque[k++] = leftDeque[i++];
 		else
@@ -131,10 +161,12 @@ void PmergeMe::mergeDeque(int left, int mid, int right) {
 		_deque[k++] = rightDeque[j++];
 }
 
-void PmergeMe::mergeSortDeque(int left, int right) {
+void PmergeMe::mergeSortDeque(int left, int right)
+{
 	if (left >= right)
 		return;
-	if (right - left + 1 <= INSERTION_SORT_THRESHOLD) {
+	if (right - left + 1 <= INSERTION_SORT_THRESHOLD)
+	{
 		insertionSortDeque(left, right);
 		return;
 	}
@@ -144,10 +176,12 @@ void PmergeMe::mergeSortDeque(int left, int right) {
 	mergeDeque(left, mid, right);
 }
 
-double PmergeMe::sortDeque() {
-	clock_t start = clock();
-	mergeSortDeque(0, _deque.size() - 1);
-	clock_t end = clock();
-	double elapsed = (double)(end - start) / CLOCKS_PER_SEC;
-	return elapsed * 1e6;
+double PmergeMe::sortDeque()
+{
+    std::clock_t start = std::clock();
+    mergeSortDeque(0, _deque.size() - 1);
+    std::clock_t end = std::clock();
+
+    double elapsed = static_cast<double>(end - start) * 1000000.0 / CLOCKS_PER_SEC;
+    return elapsed; // en millisecondes avec décimales
 }
