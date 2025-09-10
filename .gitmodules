@@ -1,6 +1,7 @@
 [submodule "Complete_libft ✅"]
 	path = Complete_libft ✅
 	url = git@github.com:M2000-fr/Complete_Libft-.git
+	branch = main
 [submodule "Projects/In_progress/ft_transcendence"]
 	path = Projects/In_progress/ft_transcendence
 	url = git@github.com:M2000-fr/ft_transcendence.git
@@ -10,12 +11,16 @@
 [submodule "Projects/libft_125"]
 	path = Projects/libft_125
 	url = git@github.com:M2000-fr/Libft.git
+	branch = main
 [submodule "Projects/ft_printf_110"]
 	path = Projects/ft_printf_110
 	url = git@github.com:M2000-fr/Ft_printf.git
+	branch = main
 [submodule "Projects/get_next_line_112"]
 	path = Projects/get_next_line_112
 	url = git@github.com:M2000-fr/Get_next_line.git
+	branch = main
 [submodule "Projects/Born2beroot_125"]
 	path = Projects/Born2beroot_125
 	url = git@github.com:M2000-fr/Born2beroot.git
+	branch = main
