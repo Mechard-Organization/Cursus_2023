@@ -1,15 +1,15 @@
 [submodule "Complete_libft ✅"]
 	path = Complete_libft ✅
 	url = git@github.com:M2000-fr/Complete_Libft-.git
-[submodule "Projects/Libft_125"]
-	path = Projects/Libft_125
-	url = git@github.com:M2000-fr/Libft.git
-[submodule "Projects/Libft_125"]
-	path = Projects/Libft_125
-	url = git@github.com:M2000-fr/Libft.git
 [submodule "Projects/In_progress/ft_transcendence"]
 	path = Projects/In_progress/ft_transcendence
 	url = git@github.com:M2000-fr/ft_transcendence.git
 [submodule "Projects/IRC_125"]
 	path = Projects/IRC_125
 	url = git@github.com:M2000-fr/IRC.git
+[submodule "Projects/libft_125"]
+	path = Projects/libft_125
+	url = git@github.com:M2000-fr/Libft.git
+[submodule "Projects/ft_printf_110"]
+	path = Projects/ft_printf_110
+	url = git@github.com:M2000-fr/Ft_printf.git
