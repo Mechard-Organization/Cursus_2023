@@ -49,6 +49,6 @@
 [submodule "Projects/In_progress/ft_transcendence"]
 	path = Projects/In_progress/ft_transcendence
 	url = git@github.com:M2000-fr/Ft_transcendence.git
-[submodule "Project/IRC_125"]
-	path = Project/IRC_125
+[submodule "Projects/IRC_125"]
+	path = Projects/IRC_125
 	url = git@github.com:M2000-fr/IRC.git
