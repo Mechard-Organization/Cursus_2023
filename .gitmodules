@@ -24,3 +24,6 @@
 	path = Projects/Born2beroot_125
 	url = git@github.com:M2000-fr/Born2beroot.git
 	branch = main
+[submodule "Projects/philo_100"]
+	path = Projects/philo_100
+	url = git@github.com:M2000-fr/Philo.git
