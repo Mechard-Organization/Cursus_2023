@@ -33,3 +33,6 @@
 [submodule "Projects/push_swap_100"]
 	path = Projects/push_swap_100
 	url = git@github.com:M2000-fr/Push_swap.git
+[submodule "Projects/pipex_115"]
+	path = Projects/pipex_115
+	url = git@github.com:M2000-fr/Pipex.git
