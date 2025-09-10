@@ -36,3 +36,6 @@
 [submodule "Projects/pipex_115"]
 	path = Projects/pipex_115
 	url = git@github.com:M2000-fr/Pipex.git
+[submodule "Projects/so_long_96"]
+	path = Projects/so_long_96
+	url = git@github.com:M2000-fr/So_long.git
