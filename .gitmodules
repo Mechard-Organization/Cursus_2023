@@ -42,3 +42,6 @@
 [submodule "Projects/Netpractice_100"]
 	path = Projects/Netpractice_100
 	url = git@github.com:M2000-fr/Netpractice.git
+[submodule "Projects/cub3D_105"]
+	path = Projects/cub3D_105
+	url = git@github.com:M2000-fr/Cub3D.git
