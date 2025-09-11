@@ -54,3 +54,7 @@
 	path = Projects/IRC_125
 	url = git@github.com:M2000-fr/IRC.git
 	branch = maxime
+[submodule "Projects/Cpp"]
+	path = Projects/Cpp
+	url = git@github.com:M2000-fr/Cpp.git
+	branch = main
