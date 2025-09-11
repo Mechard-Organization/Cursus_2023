@@ -58,3 +58,6 @@
 	path = Projects/Cpp
 	url = git@github.com:M2000-fr/Cpp.git
 	branch = main
+[submodule "Project"]
+	path = Project
+	url = git@github.com:M2000-fr/Projects.git
