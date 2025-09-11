@@ -5,3 +5,4 @@
 [submodule "Projects"]
 	path = Projects
 	url = git@github.com:M2000-fr/Projetcs.git
+	branch = main
