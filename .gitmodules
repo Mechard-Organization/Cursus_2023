@@ -61,3 +61,4 @@
 [submodule "ProjectS"]
 	path = ProjectS
 	url = git@github.com:M2000-fr/Projects.git
+	branch = main
