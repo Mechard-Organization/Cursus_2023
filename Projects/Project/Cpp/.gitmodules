@@ -1,0 +1,40 @@
+[submodule "cpp00_80"]
+	path = cpp00_80
+	url = git@github.com:M2000-fr/Cpp00.git
+	branch = main
+[submodule "cpp01_90"]
+	path = cpp01_90
+	url = git@github.com:M2000-fr/Cpp01.git
+	branch = main
+[submodule "cpp02_80"]
+	path = cpp02_80
+	url = git@github.com:M2000-fr/Cpp02.git
+	branch = main
+[submodule "cpp03_80"]
+	path = cpp03_80
+	url = git@github.com:M2000-fr/Cpp03.git
+	branch = main
+[submodule "cpp04_80"]
+	path = cpp04_80
+	url = git@github.com:M2000-fr/Cpp04.git
+	branch = main
+[submodule "cpp05_100"]
+	path = cpp05_100
+	url = git@github.com:M2000-fr/Cpp05.git
+	branch = main
+[submodule "cpp06_100"]
+	path = cpp06_100
+	url = git@github.com:M2000-fr/Cpp06.git
+	branch = main
+[submodule "cpp07_100"]
+	path = cpp07_100
+	url = git@github.com:M2000-fr/Cpp07.git
+	branch = main
+[submodule "cpp08_100"]
+	path = cpp08_100
+	url = git@github.com:M2000-fr/Cpp08.git
+	branch = main
+[submodule "cpp09_100"]
+	path = cpp09_100
+	url = git@github.com:M2000-fr/Cpp09.git
+	branch = main
