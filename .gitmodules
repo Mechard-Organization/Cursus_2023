@@ -1,4 +1,7 @@
 [submodule "Complete_libft ✅"]
-	path = "Complete_libft ✅"
+	path = Complete_libft ✅
 	url = git@github.com:M2000-fr/Complete_Libft-.git
 	branch = main
+[submodule "Projects"]
+	path = Projects
+	url = git@github.com:M2000-fr/Projects.git
