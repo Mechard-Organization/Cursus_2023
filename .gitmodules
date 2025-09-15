@@ -1,8 +1,8 @@
 [submodule "Complete_libft ✅"]
 	path = Complete_libft ✅
-	url = git@github.com:Team-mechard/Complete_Libft-.git
+	url = git@github.com:Mechard-Organization/Complete_Libft-.git
 	branch = main
 [submodule "Projects"]
 	path = Projects
-	url = git@github.com:Team-mechard/Projects.git
+	url = git@github.com:Mechard-Organization/Projects.git
 	branch = main
