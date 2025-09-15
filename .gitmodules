@@ -5,3 +5,4 @@
 [submodule "Projects"]
 	path = Projects
 	url = git@github.com:Team-mechard/Projects.git
+	branch = main
