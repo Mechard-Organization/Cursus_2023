@@ -6,6 +6,3 @@
 	path = Projects
 	url = git@github.com:Mechard-Organization/Projects.git
 	branch = main
-[submodule "/home/mechard/Documents/42_Paris/42_Paris_2023/Cursus_2023/Projects"]
-	path = /home/mechard/Documents/42_Paris/42_Paris_2023/Cursus_2023/Projects
-	url = git@github.com:Mechard-Organization/Projects.git
