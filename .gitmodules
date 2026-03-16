@@ -2,3 +2,4 @@
 [submodule "Projects"]
 	path = Projects
 	url = git@github.com:Mechard-Organization/Projects.git
+	branch = main
