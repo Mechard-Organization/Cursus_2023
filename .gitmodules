@@ -6,3 +6,6 @@
 [submodule "Post_Common_Core"]
 	path = Post_Common_Core
 	url = https://github.com/Mechard-Organization/Post_common_core.git
+[submodule "Common_Core"]
+	path = Common_Core
+	url = https://github.com/Mechard-Organization/Common_core.git
