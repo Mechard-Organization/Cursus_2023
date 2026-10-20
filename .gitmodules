@@ -3,3 +3,6 @@
 	path = Projects
 	url = git@github.com:Mechard-Organization/Projects.git
 	branch = main
+[submodule "Post_Common_Core"]
+	path = Post_Common_Core
+	url = https://github.com/Mechard-Organization/Post_common_core.git
