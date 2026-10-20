@@ -1,7 +1,7 @@
 
-[submodule "Projects"]
-	path = Projects
-	url = git@github.com:Mechard-Organization/Projects.git
+[submodule "Common_core"]
+	path = Common_core
+	url = https://github.com/Mechard-Organization/Common_core.git
 	branch = main
 [submodule "Post_Common_Core"]
 	path = Post_Common_Core
