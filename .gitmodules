@@ -6,3 +6,6 @@
 	path = Tools/Complete_libft ✅
 	url = git@github.com:Mechard-Organization/Complete_Libft-.git
 	branch = main
+[submodule "Post_common_core"]
+	path = Post_common_core
+	url = git@github.com:Mechard-Organization/Post_common_core.git
