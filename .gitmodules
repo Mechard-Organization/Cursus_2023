@@ -1,7 +1,4 @@
 
-[submodule "Post_Common_Core"]
-	path = Post_Common_Core
-	url = https://github.com/Mechard-Organization/Post_common_core.git
 [submodule "Common_Core"]
 	path = Common_Core
 	url = https://github.com/Mechard-Organization/Common_core.git
@@ -9,4 +6,3 @@
 	path = Tools/Complete_libft ✅
 	url = git@github.com:Mechard-Organization/Complete_Libft-.git
 	branch = main
-	
