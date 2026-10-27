@@ -77,7 +77,7 @@ Cursus_2023/                            # 独立リポジトリ — main_sub
 │   ├── minishell_101/
 │   ├── So_long_96/
 │   ├── Cub3D_105/
-│   ├── Cpp/                             # Gitサブモジュール — cpp00〜cpp09
+│   ├── Cpp/                            # Gitサブモジュール — cpp00〜cpp09
 │   ├── Born2beroot_125/
 │   ├── Netpractice_105/
 │   ├── IRC_125/
@@ -88,9 +88,9 @@ Cursus_2023/                            # 独立リポジトリ — main_sub
 │   ├── Realeased/
 │   │   └── Internship_I_119/           # Gitサブモジュール
 │   └── Unrealeased/
-│       ├── Darkly/                      # Gitサブモジュール
-│       ├── libasm/                      # Gitサブモジュール
-│       └── snow-crash/                  # Gitサブモジュール
+│       ├── Darkly/                     # Gitサブモジュール
+│       ├── libasm/                     # Gitサブモジュール
+│       └── snow-crash/                 # Gitサブモジュール
 ├── Tools/
 │   ├── Complete_libft ✅/              # Gitサブモジュール
 │   └── Makefile_standard               # 通常の追跡ファイル

@@ -77,7 +77,7 @@ Cursus_2023/                            # Dépôt indépendant — main_sub
 │   ├── minishell_101/
 │   ├── So_long_96/
 │   ├── Cub3D_105/
-│   ├── Cpp/                             # Sous-module Git — cpp00 à cpp09
+│   ├── Cpp/                            # Sous-module Git — cpp00 à cpp09
 │   ├── Born2beroot_125/
 │   ├── Netpractice_105/
 │   ├── IRC_125/
@@ -88,9 +88,9 @@ Cursus_2023/                            # Dépôt indépendant — main_sub
 │   ├── Realeased/
 │   │   └── Internship_I_119/           # Sous-module Git
 │   └── Unrealeased/
-│       ├── Darkly/                      # Sous-module Git
-│       ├── libasm/                      # Sous-module Git
-│       └── snow-crash/                  # Sous-module Git
+│       ├── Darkly/                     # Sous-module Git
+│       ├── libasm/                     # Sous-module Git
+│       └── snow-crash/                 # Sous-module Git
 ├── Tools/
 │   ├── Complete_libft ✅/              # Sous-module Git
 │   └── Makefile_standard               # Fichier suivi directement

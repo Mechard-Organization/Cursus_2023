@@ -77,7 +77,7 @@ Cursus_2023/                            # Standalone repository — main_sub
 │   ├── minishell_101/
 │   ├── So_long_96/
 │   ├── Cub3D_105/
-│   ├── Cpp/                             # Git submodule — cpp00 to cpp09
+│   ├── Cpp/                            # Git submodule — cpp00 to cpp09
 │   ├── Born2beroot_125/
 │   ├── Netpractice_105/
 │   ├── IRC_125/
@@ -88,9 +88,9 @@ Cursus_2023/                            # Standalone repository — main_sub
 │   ├── Realeased/
 │   │   └── Internship_I_119/           # Git submodule
 │   └── Unrealeased/
-│       ├── Darkly/                      # Git submodule
-│       ├── libasm/                      # Git submodule
-│       └── snow-crash/                  # Git submodule
+│       ├── Darkly/                     # Git submodule
+│       ├── libasm/                     # Git submodule
+│       └── snow-crash/                 # Git submodule
 ├── Tools/
 │   ├── Complete_libft ✅/              # Git submodule
 │   └── Makefile_standard               # Tracked file
