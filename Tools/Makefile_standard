@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2026/10/28 13:22:40 by mechard          ###   ########.fr        #
+#    Updated: 2026/10/29 15:10:20 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,8 @@ CSRC_LOCATION		= $(CSRCS) $(CHDRS)
 
 ASMSRCS				= $(shell find . -type f -not -path "./inc/*" | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".s" { print }')
 ASMOBJS				= $(shell find . -type f -not -path "./inc/*" | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".o" { print }')
-ASMSRC_LOCATION		= $(ASMSRCS)
+ASMHDRS				= $(shell find . -type f -not -path "./inc/*" | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { print }')
+ASMSRC_LOCATION		= $(ASMSRCS) $(ASMHDRS)
 
 # Tout les fichiers sources en une seule variables
 
@@ -99,7 +100,7 @@ ifeq ($(LANG), c++)
 else ifeq ($(LANG), c)
 	FILES			= $(CSRC_LOCATION)
 else ifeq ($(LANG), asm)
-    FILES 			= $(ASMSRCS)
+    FILES 			= $(ASMSRC_LOCATION)
 endif
 
 ifeq ($(PROJECT), LIBFT)
@@ -236,7 +237,7 @@ endif
 		$(LMAKE) clean $(SILENCE); \
 		$(MAKE) suppr_line ARG3=".o dans libft"; \
 	fi; \
-	for file in $$(find . -name ".git" -prune -o -type f -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -not -path "./tests/*" -not -path "./obj/*" -not -name ".gitignore" -print); do \
+	for file in $$(find . -name ".git" -prune -o -type f -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -not -path "./tests/*" -not -path "./obj/*" -not -name "tests" -not -name ".gitignore" -print); do \
 		keep=no; \
 		for a in $$allowed; do \
 			if [ "$$file" = "$$a" ] || [ "$$file" = "./$$a" ]; then \
@@ -268,7 +269,7 @@ endif
 		rm -rf $(MLX_DIR); \
 		$(MAKE) suppr_line ARG3="$(MLX_DIR)"; \
 	fi; \
-	for dir in $$(find . -name ".git" -prune -o -type f -name "*.o" -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -exec dirname {} \; | sort -u); do \
+	for dir in $$(find . -name ".git" -prune -o -type f -name "*.o"  -not -name "tests" -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -exec dirname {} \; | sort -u); do \
 	    if [ "$$dir" != "." ]; then \
 		    rm -rf $$dir; \
 		    $(MAKE) suppr_line ARG3="Directory $$dir"; \
